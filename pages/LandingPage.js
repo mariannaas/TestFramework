@@ -16,7 +16,6 @@ LandingPage = function LandingPage (driver) {
 
 LandingPage.prototype.visit = function(){
     this.driver.get(this.url);
-
     return webdriver.promised.fullfilled(true);
 };
 
