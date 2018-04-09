@@ -15,10 +15,7 @@ test.describe('Google', function () {
         // Set timeout to 10 seconds
 
         this.timeout(10000);
-
-
-
-        // Get driver
+       // Get driver
 
         var driver = new webdriver.Builder().
 
@@ -42,10 +39,15 @@ test.describe('Google', function () {
 
         });
 
-       driver.findElement(webdriver.By.className()).click();
+        var searchBox = driver.findElement(webdriver.By.name('q'));
+        searchBox.sendKeys('simple programmer');
+        this.timeout(30000);
+        searchBox.getAttribute('value').then(function(value) {
+            assert.equal(value, 'simple programmer');
+        });
 
         // Quit webdriver
-
+        driver.manage().deleteAllCookies();
         driver.quit();
 
     });
