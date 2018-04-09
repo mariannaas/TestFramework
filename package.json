@@ -9,7 +9,8 @@
   "dependencies": {
     "chromedriver": "^2.37.0",
     "mocha": "^2.5.3",
-    "selenium-webdriver": "^2.46.1"
+    "selenium-webdriver": "^2.53.2",
+    "chai": "^3.5.0"
   },
   "scripts": {
     "test": "mocha"

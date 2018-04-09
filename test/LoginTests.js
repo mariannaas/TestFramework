@@ -1,37 +1,53 @@
-var assert = require('assert');
-var webdriver = require('selenium-webdriver');
-var test = require('selenium-webdriver/testing');
+var assert = require('chai').assert,
+
+    test = require('selenium-webdriver/testing'),
+
+    webdriver = require('selenium-webdriver');
 
 
-describe( 'Test Suite' , function() {
-    let driver;
-    this.timeout(600000);
 
-    before(function () {
-        driver = new webdriver.Builder().withCapabilities(webdriver.Capabilities.chrome()).build();
-        driver.manage().window().maximize();
+// Our test
 
-    });
+test.describe('Google', function () {
 
-    after(function () {
-      driver.quit();
+    test.it('Title should be "Google"', function () {
 
-    });
+        // Set timeout to 10 seconds
 
-    it('Test Case', function () {
-        let url = "http://www.google.com"
-        driver.get(url).then();
-        driver.findElement(webdriver.By.id(username)).sendKeys("test");
+        this.timeout(10000);
 
-        // a promise is returned while ‘click’ action
-        // is registered in ‘driver’ object
-        driver.findElement(webdriver.By.id(submit)).click();
-        driver.getTitle().then(function (title) {
-            expect(title).equals(my_title);
+
+
+        // Get driver
+
+        var driver = new webdriver.Builder().
+
+        withCapabilities(webdriver.Capabilities.chrome()).
+
+        build();
+
+
+
+        // Go to URL
+
+        driver.get('http://www.google.com');
+
+
+
+        // Find title and assert
+
+        driver.executeScript('return document.title').then(function(return_value) {
+
+            assert.equal(return_value, 'Google')
+
         });
+
+       driver.findElement(webdriver.By.className()).click();
+
+        // Quit webdriver
+
+        driver.quit();
+
     });
+
 });
-
-
-
-
