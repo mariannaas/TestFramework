@@ -8,9 +8,9 @@ var assert = require('chai').assert,
 
 // Our test
 
-test.describe('Google', function () {
+test.describe('William Hill', function () {
 
-    test.it('Title should be "Google"', function () {
+    test.it('Title should be "William Hill"', function () {
 
         // Set timeout to 10 seconds
 
@@ -27,7 +27,7 @@ test.describe('Google', function () {
 
         // Go to URL
 
-        driver.get('http://www.google.com');
+        driver.get('https://vegas.williamhill.com');
 
 
 
@@ -35,15 +35,17 @@ test.describe('Google', function () {
 
         driver.executeScript('return document.title').then(function(return_value) {
 
-            assert.equal(return_value, 'Google')
+            assert.equal(return_value, 'Play Online Casino Games at William Hill Vegas')
 
         });
 
-        var searchBox = driver.findElement(webdriver.By.name('q'));
-        searchBox.sendKeys('simple programmer');
+        var magnifierButton = driver.findElement(webdriver.By.className('btn-search-magnifier'));
+        magnifierButton.click();
         this.timeout(30000);
+        var searchBox = driver.findElement(webdriver.By.xpath("//div[@class='search-input__input-wrapper']/input"));
+        searchBox.sendKeys('Mayfair Roulette');
         searchBox.getAttribute('value').then(function(value) {
-            assert.equal(value, 'simple programmer');
+            assert.equal(value, 'Mayfair Roulette');
         });
 
         // Quit webdriver
@@ -53,3 +55,5 @@ test.describe('Google', function () {
     });
 
 });
+
+// /html/body/div[3]/div/div/div[2]/div[3]/div/div/div[1]/div/div/div/div/input
