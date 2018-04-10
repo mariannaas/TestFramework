@@ -1,12 +1,10 @@
-var page = require('./Page');
+var webdriver = require('selenium-webdriver');
 
 
 function SearchResultsPage (webdriver) {
-    page.call(this, webdriver, 'https://vegas.williamhill.com/en-gb/search');
+    this.driver = driver;
+    this.url =  'https://vegas.williamhill.com/en-gb/search';
 }
-
-SearchResultsPage.prototype = Object.create(page.prototype);
-SearchResultsPage.prototype.constructor = SearchResultsPage;
 
 SearchResultsPage.prototype.getDisplayedResults = function() {
     return this.driver.findElements({ });

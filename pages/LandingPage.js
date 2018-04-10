@@ -1,13 +1,16 @@
 var webdriver = require('selenium-webdriver');
-var page = require('./Page');
 var searchResultsPage = require('./SearchResultsPage');
+var assert = require('chai').assert;
 
-function LandingPage (webdriver) {
-    page.call(this, webdriver, 'https://vegas.williamhill.com');
+ LandingPage = function LandingPage (driver) {
+     this.driver = driver;
+     this.url = 'https://vegas.williamhill.com';
 }
 
-LandingPage.prototype = Object.create(page.prototype);
-LandingPage.prototype.constructor = LandingPage;
+LandingPage.prototype.openPage = function () {
+    this.driver.get(this.url);
+    return webdriver.promise.fulfilled(true);
+};
 
 /*
  The method is used for clicking on Magnifier button found by @class attribute
@@ -24,6 +27,12 @@ LandingPage.prototype.typeSearchQuery = function(searchQuery) {
     return new searchResultsPage(this.driver);
 };
 
+LandingPage.prototype.isWHTitle = function(){
+    this.driver.executeScript('return document.title').then(function(return_value) {
+        assert.equal(return_value, 'Play Online Casino Games at William Hill Vegas');
+    });
+
+};
 
 module.exports = LandingPage;
 

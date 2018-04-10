@@ -8,8 +8,8 @@
   },
   "dependencies": {
     "chromedriver": "^2.33.0",
-    "mocha": "^2.5.3",
-    "selenium-webdriver": "^2.53.2",
+    "mocha": "^2.4.5",
+    "selenium-webdriver": "^2.53.1",
     "chai": "^3.5.0"
   },
   "scripts": {

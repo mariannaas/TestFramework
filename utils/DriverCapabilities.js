@@ -2,16 +2,12 @@ var webdriver =require('selenium-webdriver'),
     driver;
 
 var getDriver = function() {
-    if(driver) {
-        return driver;
-    } else {
-        driver = buildDriver();
-        return driver;
-    }
+        return this.driver;
+
 };
 
-var buildDriver = function() {
-    switch(process.env.PLATFORM) {
+var setDriver = function(testBrowser) {
+    switch(testBrowser) {
         case 'FIREFOX':
             return new webdriver.Builder().
             withCapabilities(webdriver.Capabilities.firefox()).
@@ -29,6 +25,7 @@ var buildDriver = function() {
             withCapabilities(webdriver.Capabilities.chrome()).
             build();
     }
+    done();
 };
 
 module.exports.getDriver = getDriver;
