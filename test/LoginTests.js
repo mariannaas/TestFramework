@@ -42,11 +42,17 @@ test.describe('William Hill', function () {
         var magnifierButton = driver.findElement(webdriver.By.className('btn-search-magnifier'));
         magnifierButton.click();
         this.timeout(30000);
+        var searchParameter = 'Mayfair Roulette';
         var searchBox = driver.findElement(webdriver.By.xpath("//div[@class='search-input__input-wrapper']/input"));
         searchBox.sendKeys('Mayfair Roulette');
         searchBox.getAttribute('value').then(function(value) {
-            assert.equal(value, 'Mayfair Roulette');
+            assert.equal(value, searchParameter);
         });
+        var imgLink = driver.findElements(webdriver.By.xpath("//div[.//img[contains(@alt, 'Mayfair Roulette')]]"));
+
+      //  imgLink.hover();
+        //div[.//img[contains(@alt, 'Mayfair Roulette')]]
+
 
         // Quit webdriver
         driver.manage().deleteAllCookies();
