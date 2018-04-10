@@ -1,23 +1,29 @@
-// class ="btn-search-magnifier" click = "showSearchInput()"
-
-//div class="search-input__input-wrapper" /input value
-
-//o-btn o-btn--more tile-menu__button tile-menu__button--more
-
-// button o-btn o-btn--big text()='Play Now'
-
-//class = login-component__wrapper
 var webdriver = require('selenium-webdriver');
+var page = require('./Page');
+var searchResultsPage = require('./SearchResultsPage');
 
-LandingPage = function LandingPage (driver) {
-  this.driver = driver;
-  this.url = "https://vegas.williamhill.com/"
+function LandingPage (webdriver) {
+    page.call(this, webdriver, 'https://vegas.williamhill.com');
+}
+
+LandingPage.prototype = Object.create(page.prototype);
+LandingPage.prototype.constructor = LandingPage;
+
+/*
+ The method is used for clicking on Magnifier button found by @class attribute
+ */
+LandingPage.prototype.clickMagnifierButton = function () {
+    this.driver.findElement(webdriver.By.className('btn-search-magnifier')).click();
+    this.timeout(30000);
+};
+/*
+ The method is used for entering search value into search input found by xpath
+ */
+LandingPage.prototype.typeSearchQuery = function(searchQuery) {
+    this.driver.findElement(webdriver.By.xpath("//div[@class='search-input__input-wrapper']/input")).sendKeys(searchQuery);
+    return new searchResultsPage(this.driver);
 };
 
-LandingPage.prototype.visit = function(){
-    this.driver.get(this.url);
-    return webdriver.promised.fullfilled(true);
-};
 
 module.exports = LandingPage;
 
