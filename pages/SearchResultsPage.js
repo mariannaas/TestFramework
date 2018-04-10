@@ -1,7 +1,7 @@
 var webdriver = require('selenium-webdriver');
 
 
-function SearchResultsPage (webdriver) {
+function SearchResultsPage (driver) {
     this.driver = driver;
     this.url =  'https://vegas.williamhill.com/en-gb/search';
 }

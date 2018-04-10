@@ -14,6 +14,7 @@ test.describe('William Hill', function () {
          driver = new webdriver.Builder().
          withCapabilities(webdriver.Capabilities.chrome()).
          build();
+         driver.manage().window().maximize();
         done();
     });
 
@@ -28,10 +29,14 @@ test.describe('William Hill', function () {
         landingPage.isWHTitle();
         done();
     });
+
     test.it("Search for 'Mayfair Roulette' game", function (done) {
+        var landingPage = new LandingPage(driver);
+        landingPage.openPage();
+        landingPage.clickMagnifierButton();
+        landingPage.typeSearchQuery('Mayfair  Roulette');
         done()
-        // driver.get('https://vegas.williamhill.com');
-        // done();
+
         //div[.//img[contains(@alt, 'Mayfair Roulette')]]
         // var tile = driver.findElement(webdriver.By.xpath("//div[@class='content']")).then(function(elem) {
         //     driver.actions().mouseMove(elem).perform();

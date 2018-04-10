@@ -17,7 +17,8 @@ LandingPage.prototype.openPage = function () {
  */
 LandingPage.prototype.clickMagnifierButton = function () {
     this.driver.findElement(webdriver.By.className('btn-search-magnifier')).click();
-    this.timeout(30000);
+    return webdriver.promise.fulfilled(true);
+
 };
 /*
  The method is used for entering search value into search input found by xpath
@@ -26,7 +27,9 @@ LandingPage.prototype.typeSearchQuery = function(searchQuery) {
     this.driver.findElement(webdriver.By.xpath("//div[@class='search-input__input-wrapper']/input")).sendKeys(searchQuery);
     return new searchResultsPage(this.driver);
 };
-
+/*
+ Simple check of the page title
+ */
 LandingPage.prototype.isWHTitle = function(){
     this.driver.executeScript('return document.title').then(function(return_value) {
         assert.equal(return_value, 'Play Online Casino Games at William Hill Vegas');
