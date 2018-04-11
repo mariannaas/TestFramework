@@ -1,6 +1,6 @@
 var webdriver = require('selenium-webdriver');
-var LoginDialog = require('./LoginDialog');
-var LandingPage = require('./LandingPage')
+var loginDialog = require('./LoginDialog');
+var landingPage = require('./LandingPage');
 
 TileDetails = function LandingPage(driver) {
     this.driver = driver;
@@ -9,7 +9,7 @@ TileDetails = function LandingPage(driver) {
 /*
 The method is used for performing a click on 'Play Now' button
  */
-LandingPage.prototype.clickOnPlayNowButton = function () {
+TileDetails.prototype.clickOnPlayNowButton = function () {
     this.driver.findElement(webdriver.By.xpath("//div[@class='tile-details__buttons']/button[text()='Play Now']")).then(function (elem) {
         scrollToTile();
         elem.click();

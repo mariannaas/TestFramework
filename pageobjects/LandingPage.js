@@ -1,5 +1,5 @@
 var webdriver = require('selenium-webdriver');
-var searchResultsPage = require('./SearchResultsPage');
+var tileDetails = require('./TileDetails');
 var assert = require('chai').assert;
 
 LandingPage = function LandingPage(driver) {
@@ -53,8 +53,8 @@ The method is used for hovering over a tile
     @param gameToSearch - a string, game title searched by user
  */
 LandingPage.prototype.hoverOverGameTile = function (gameToSearch) {
-    driver.findElement(webdriver.By.xpath("//img[@alt='" + gameToSearch + "']/..")).then(function (elem) {
-        driver.actions().mouseMove(elem).perform();
+    this.driver.findElement(webdriver.By.xpath("//img[@alt='" + gameToSearch + "']/..")).then(function (elem) {
+        this.driver.actions().mouseMove(elem).perform();
     });
 };
 

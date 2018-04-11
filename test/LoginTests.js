@@ -2,8 +2,10 @@ var assert = require('chai').assert,
     test = require('selenium-webdriver/testing'),
     webdriver = require('selenium-webdriver'),
     driverCapabilitiy = require('../utils/DriverCapabilities'),
-    LandingPage = require('../pageobjects/LandingPage'),
-    SearchResultsPage = require('../pageobjects/SearchResultsPage');
+    landingPage = require('../pageobjects/LandingPage'),
+    loginDialog = require('../pageobjects/LoginDialog'),
+    tileDetais = require('../pageobjects/TileDetails');
+
 
 
 test.describe('William Hill', function () {
