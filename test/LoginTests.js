@@ -30,18 +30,18 @@ test.describe('William Hill', function () {
 
     test.it("Search for 'Mayfair Roulette' game", function (done) {
         var landingPage = new LandingPage(driver);
-        landingPage.openPage();
-        landingPage.clickMagnifierButton();
+        landingPage.openPage(); //navigate to WH landing page
+        landingPage.clickMagnifierButton(); //click Magnifier Button
 
         var gameToSearch = "Mayfair Roulette";
-        landingPage.typeSearchQuery(gameToSearch);
-        landingPage.hoverOverGameTile(gameToSearch);
+        landingPage.typeSearchQuery(gameToSearch); // In displayed search input enter 'Mayfair Roulette'
+        landingPage.hoverOverGameTile(gameToSearch); //Hover mouse over searched game
 
-        var tileDetails = landingPage.clickOnGameTile(gameToSearch);
-        var loginDialog = tileDetails.clickOnPlayNowButton()
-        loginDialog.validateIfDialogShown();
+        var tileDetails = landingPage.clickOnGameTile(gameToSearch); //click on Tile details
+        var loginDialog = tileDetails.clickOnPlayNowButton(); // click on 'Play Now' button
+        loginDialog.validateIfDialogShown(); // check if login window appears
 
-        done();
+        done(); // for performing sync
 
 
     });

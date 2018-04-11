@@ -21,6 +21,7 @@ LandingPage.prototype.clickMagnifierButton = function () {
 };
 /*
  The method is used for entering search value into search input found by xpath
+ @param searchQuery - a string searched by user
  */
 LandingPage.prototype.typeSearchQuery = function (searchQuery) {
     this.driver.findElement(webdriver.By.xpath("//div[@class='search-input__input-wrapper']/input")).sendKeys(searchQuery);
@@ -36,6 +37,10 @@ LandingPage.prototype.isWHTitle = function () {
     });
 
 };
+/*
+The method is used for performing click on Title
+    @param gameToSearch - a string,  game title searched by user
+ */
 LandingPage.prototype.clickOnGameTile = function (gameToSearch) {
     this.driver.findElement(webdriver.By.xpath("//img[@alt='" + gameToSearch + "']/..")).then(function (elem) {
         scrollToTile();
@@ -43,15 +48,14 @@ LandingPage.prototype.clickOnGameTile = function (gameToSearch) {
     });
     return new TileDetails(this.driver);
 };
-
+/*
+The method is used for hovering over a tile
+    @param gameToSearch - a string, game title searched by user
+ */
 LandingPage.prototype.hoverOverGameTile = function (gameToSearch) {
     driver.findElement(webdriver.By.xpath("//img[@alt='" + gameToSearch + "']/..")).then(function (elem) {
         driver.actions().mouseMove(elem).perform();
     });
-};
-scrollToTile = function (elem) {
-    this.driver.executeScript("arguments[0].scrollIntoView(true);", elem);
-    return webdriver.promise.fulfilled(true);
 };
 
 module.exports = LandingPage;
