@@ -24,6 +24,7 @@ LandingPage.prototype.clickMagnifierButton = function () {
  */
 LandingPage.prototype.typeSearchQuery = function (searchQuery) {
     this.driver.findElement(webdriver.By.xpath("//div[@class='search-input__input-wrapper']/input")).sendKeys(searchQuery);
+    this.driver.isElementPresent(webdriver.By.className("categories-list-page__content page__content"));
     return webdriver.promise.fulfilled(true);
 };
 /*
@@ -36,17 +37,22 @@ LandingPage.prototype.isWHTitle = function () {
 
 };
 LandingPage.prototype.clickOnGameTile = function (gameToSearch) {
-    var d = webdriver.promise.defer();
     this.driver.findElement(webdriver.By.xpath("//img[@alt='" + gameToSearch + "']/..")).then(function (elem) {
-        //  driver.actions().mouseMove(elem).perform();
+        scrollToTile();
         elem.click();
     });
-    return d.promise;
+    return new TileDetails(this.driver);
 };
-scrollIntoTile = function (elem) {
+
+LandingPage.prototype.hoverOverGameTile = function (gameToSearch) {
+    driver.findElement(webdriver.By.xpath("//img[@alt='" + gameToSearch + "']/..")).then(function (elem) {
+        driver.actions().mouseMove(elem).perform();
+    });
+};
+scrollToTile = function (elem) {
     this.driver.executeScript("arguments[0].scrollIntoView(true);", elem);
     return webdriver.promise.fulfilled(true);
-}
+};
 
 module.exports = LandingPage;
 
