@@ -13,7 +13,7 @@ test.describe('William Hill', function () {
     this.timeout(15000);
 
     test.before(function (done) {
-        driver = new webdriver.Builder().withCapabilities(webdriver.Capabilities.chrome()).build();
+        driver = require('../utils/DriverCapabilities').getDriver();
         driver.manage().window().maximize();
         done();
     });
