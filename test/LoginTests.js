@@ -10,11 +10,9 @@ test.describe('William Hill', function () {
     var driver;
     this.timeout(15000);
 
-     test.before(function (done) {
-         driver = new webdriver.Builder().
-         withCapabilities(webdriver.Capabilities.chrome()).
-         build();
-         driver.manage().window().maximize();
+    test.before(function (done) {
+        driver = new webdriver.Builder().withCapabilities(webdriver.Capabilities.chrome()).build();
+        driver.manage().window().maximize();
         done();
     });
 
@@ -34,15 +32,18 @@ test.describe('William Hill', function () {
         var landingPage = new LandingPage(driver);
         landingPage.openPage();
         landingPage.clickMagnifierButton();
-        landingPage.typeSearchQuery('Mayfair  Roulette');
-        done()
+        var gameToSearch = "Mayfair Roulette";
+        landingPage.typeSearchQuery(gameToSearch);
+        landingPage.clickOnGameTile(gameToSearch);
 
-        //div[.//img[contains(@alt, 'Mayfair Roulette')]]
-        // var tile = driver.findElement(webdriver.By.xpath("//div[@class='content']")).then(function(elem) {
-        //     driver.actions().mouseMove(elem).perform();
-        // });
-        // driver.manage().deleteAllCookies();
-        // driver.quit();
+
+        // driver.findElement(webdriver.By.className("tile-details")).then(function (elem) {
+        //  });
+        //driver.findElement(webdriver.By.className('o-btn o-btn--big')).then(function (elem) {
+        //   elem.click();
+            done();
+
+
     });
 
 });

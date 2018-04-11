@@ -7,10 +7,11 @@
     "test": "tests"
   },
   "dependencies": {
+    "chai": "^3.5.0",
     "chromedriver": "^2.33.0",
+    "geckodriver": "^1.11.0",
     "mocha": "^2.4.5",
-    "selenium-webdriver": "^2.53.1",
-    "chai": "^3.5.0"
+    "selenium-webdriver": "^2.53.1"
   },
   "scripts": {
     "test": "mocha"
