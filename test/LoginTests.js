@@ -6,7 +6,6 @@ var assert = require('chai').assert,
     SearchResultsPage = require('../pageobjects/SearchResultsPage');
 
 
-
 test.describe('William Hill', function () {
     var driver;
     this.timeout(15000);
@@ -22,26 +21,26 @@ test.describe('William Hill', function () {
         done();
     });
 
-   // test.it('Simple Test - Title should be "William Hill"', function (done) {
-        // var landingPage = new LandingPage(driver);
-        // landingPage.openPage();
-        // landingPage.isWHTitle();
-        // done();
-    //});
+    test.it('Simple Test - Title should be "William Hill"', function (done) {
+        var landingPage = new LandingPage(driver);
+        landingPage.openPage();
+        landingPage.isWHTitle();
+        done();
+    });
 
     test.it("Search for 'Mayfair Roulette' game", function (done) {
         var landingPage = new LandingPage(driver);
         landingPage.openPage();
         landingPage.clickMagnifierButton();
+
         var gameToSearch = "Mayfair Roulette";
         landingPage.typeSearchQuery(gameToSearch);
         landingPage.hoverOverGameTile(gameToSearch);
 
+        var tileDetails = landingPage.clickOnGameTile(gameToSearch);
+        var loginDialog = tileDetails.clickOnPlayNowButton()
+        loginDialog.validateIfDialogShown();
 
-        // driver.findElement(webdriver.By.className("tile-details")).then(function (elem) {
-        //  });
-        //driver.findElement(webdriver.By.className('o-btn o-btn--big')).then(function (elem) {
-        //   elem.click();
         done();
 
 

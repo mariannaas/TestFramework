@@ -6,7 +6,7 @@ TileDetails = function LandingPage(driver) {
     this.driver = driver;
 };
 
-LandingPage.prototype.clickOnPlayMoreButton = function (gameToSearch) {
+LandingPage.prototype.clickOnPlayNowButton = function () {
     this.driver.findElement(webdriver.By.xpath("//div[@class='tile-details__buttons']/button[text()='Play Now']")).then(function (elem) {
         scrollToTile();
         elem.click();
